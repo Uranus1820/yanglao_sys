@@ -1,20 +1,41 @@
 import logging
+
 import sqlalchemy
 from flask_cors import CORS
 from flask_session import Session
+
 import config
 import argparse
-from flask import Flask
 import os
-from flask_sqlalchemy import SQLAlchemy
+
+from flask import Flask, g, session
 from flask_migrate import Migrate
+from flask_jwt_extended import JWTManager
+from extensions import *
+from database_models import *
 
-from blueprint.work_order import bp as work_order
-
-
+from blueprints.work_order import bp as work_order
+'''
+前后端code约定：
+code: 0 成功 前端无消息弹窗
+code: 1 失败 前端无消息弹窗
+code: 200 前端消息弹窗Success
+code: 201 前端消息弹窗Error
+code: 202 前端消息弹窗Warning
+code: 203 前端消息弹窗Info
+code: 204 前端通知弹窗Success
+code: 205 前端通知弹窗Error
+code: 206 前端通知弹窗Warning
+code: 207 前端通知弹窗Info
+'''
+# 加载默认权重
+repo_dir = os.getcwd()
+weights_path = 'weights/yolov5-3.1/TACO_yolov5s_300_epochs.pt'
+model_load_path = os.path.join(repo_dir, weights_path)
+weights_name = 'yolov5-3.1'
+# os.environ['FLASK_DEBUG'] = '0'
 app = Flask(__name__)
 app.config.from_object(config)
-db = SQLAlchemy()
 # 配置 Redis 作为会话存储
 # 使用文件系统作为会话存储
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -26,12 +47,17 @@ app.config['PERMANENT_SESSION_LIFETIME'] = 0  # 设置为0可以保证关闭浏�
 app.logger.setLevel(logging.INFO)
 # 配置 Werkzeug 的日志级别
 logging.getLogger('werkzeug').setLevel(logging.INFO)
-
-db.init_app(app)
-
-
 # 初始化 Flask-Session
 Session(app)
+
+db.init_app(app)
+jwt = JWTManager(app)
+mail.init_app(app)
+'''
+flask db init
+flask db migrate
+flask db upgrade
+'''
 migrate = Migrate(app, db)
 
 app.register_blueprint(work_order, url_prefix='/work_order')
@@ -66,14 +92,15 @@ def test_database_connection():
                 logging.error(f"Error connecting to {bind_key.capitalize()} database: {e}")
 
 
-
-
-
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description="Flask app exposing models")
+    parser = argparse.ArgumentParser(description="Flask app")
     parser.add_argument("--port", default=5555, type=int, help="port number")
     args = parser.parse_args()
+
+    # webapp启动后加载默认调用权重
+    test_database_connection()
     logging.info('项目已启动')
     print(args.port)
+
     app.run(host="127.0.0.1", port=args.port, debug=False)

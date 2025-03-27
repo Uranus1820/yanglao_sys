@@ -194,28 +194,35 @@ class ServiceLogModel(db.Model):
     # 服务主客体信息
     order_id = db.Column(db.Integer, name='order_id')
 
-    def to_dict(self, keys=None):
-        kwargs = {c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs}
-        kwargs['middle_content'] = kwargs['service_content']
-        del kwargs['service_content']
-        kwargs['middle_img'] = kwargs['img_url']
-        del kwargs['img_url']
-        kwargs['middle_location'] = kwargs['location']
-        del kwargs['location']
-        kwargs['middle_coordinate'] = (self.lat, self.lgt)
-        kwargs['start_coordinate'] = (self.start_lat, self.start_lgt)
-        kwargs['end_coordinate'] = (self.end_lat, self.end_lgt)
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'start_content': self.start_content,
+            'start_img': self.start_img,
+            'start_location': self.start_location,
+            'start_time': self.start_time,
+            'start_lat': self.start_lat,
+            'start_lgt': self.start_lgt,
+            # start_coordinate 动态组合
+            'start_coordinate': (self.start_lat, self.start_lgt),
+            'service_content': self.service_content,
+            'img_url': self.img_url,
+            'location': self.location,
+            'create_time': self.create_time,
+            'lat': self.lat,
+            'lgt': self.lgt,
+            # coordinate 动态组合
+            'coordinate': (self.lat, self.lgt),
 
-        if keys is dict:
-            for key in kwargs.keys():
-                if key not in keys:
-                    kwargs.pop(key)
+            'end_content': self.end_content,
+            'end_img': self.end_img,
+            'end_location': self.end_location,
+            'end_time': self.end_time,
+            'end_lat': self.end_lat,
+            'end_lgt': self.end_lgt,
+            # end_coordinate 动态组合
+            'end_coordinate': (self.end_lat, self.end_lgt),
 
-        return kwargs
+            'order_id': self.order_id,
+        }
 
-class ExecuteModel(db.Model):
-    __tablename__ = 'execute'
-    id=db.Column(db.Integer, primary_key=True)
-    service_id = db.Column(db.Integer, db.ForeignKey('order.service_id'), nullable=False)
-    image_stage = db.Column(db.String(255))
-    flow_id = db.Column(db.Integer,nullable=False)

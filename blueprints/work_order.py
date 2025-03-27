@@ -1,20 +1,17 @@
 from flask import Blueprint, jsonify
 import json
 from datetime import datetime
-from database_models import WorkOrderModel, ServiceModel
+from database_models import WorkOrderModel, ServiceModel,ServiceLogModel
 
 bp = Blueprint(name='work_order', import_name=__name__,url_prefix='/work_order')
 # 接收前端工单号并返回对应数据
 @bp.route('/orderId/<int:order_id>', methods=['GET'])
 def get_work_order(order_id):
-    order = WorkOrderModel.query.filter_by(id=order_id).first()
+    print(order_id)
+    order = ServiceLogModel.query.filter_by(id=order_id).first()
+    print(order.to_dict())
 
-
-
-    print(order)
-
-
-    # return jsonify(res), 200
+    return jsonify(order.to_dict()), 200
 @bp.route('/serviceId/<int:serviceId>', methods=['GET'])
 def get_order_by_serviced(serviceId):
     order = ServiceModel.query.filter_by(service_id=serviceId).first()

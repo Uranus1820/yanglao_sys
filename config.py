@@ -27,7 +27,7 @@ REMOTE_DATABASE = 'yanglao'
 REMOTE_DB_URI = ('mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8mb4'.
                  format(REMOTE_USERNAME, REMOTE_PASSWORD,
                         REMOTE_HOSTNAME, REMOTE_PORT, REMOTE_DATABASE))
-# SQLALCHEMY_DATABASE_URI = REMOTE_DB_URI
+#SQLALCHEMY_DATABASE_URI = REMOTE_DB_URI
 
 # 多SQL绑定配置
 SQLALCHEMY_BINDS = {

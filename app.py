@@ -1,39 +1,17 @@
 import logging
-
 import sqlalchemy
 from flask_cors import CORS
 from flask_session import Session
-
 import config
 import argparse
 import os
-
 from flask import Flask, g, session
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from extensions import *
 from database_models import *
-
 from blueprints.work_order import bp as work_order
-'''
-前后端code约定：
-code: 0 成功 前端无消息弹窗
-code: 1 失败 前端无消息弹窗
-code: 200 前端消息弹窗Success
-code: 201 前端消息弹窗Error
-code: 202 前端消息弹窗Warning
-code: 203 前端消息弹窗Info
-code: 204 前端通知弹窗Success
-code: 205 前端通知弹窗Error
-code: 206 前端通知弹窗Warning
-code: 207 前端通知弹窗Info
-'''
-# 加载默认权重
-repo_dir = os.getcwd()
-weights_path = 'weights/yolov5-3.1/TACO_yolov5s_300_epochs.pt'
-model_load_path = os.path.join(repo_dir, weights_path)
-weights_name = 'yolov5-3.1'
-# os.environ['FLASK_DEBUG'] = '0'
+
 app = Flask(__name__)
 app.config.from_object(config)
 # 配置 Redis 作为会话存储
@@ -52,7 +30,6 @@ Session(app)
 
 db.init_app(app)
 jwt = JWTManager(app)
-mail.init_app(app)
 '''
 flask db init
 flask db migrate
@@ -75,7 +52,6 @@ def cleanup_expired_sessions():
             except Exception as e:
                 print(f"Error deleting session file {file_path}: {e}")
 
-
 def test_database_connection():
     with app.app_context():
         for bind_key, engine in db.engines.items():
@@ -97,7 +73,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Flask app")
     parser.add_argument("--port", default=5555, type=int, help="port number")
     args = parser.parse_args()
-
     # webapp启动后加载默认调用权重
     test_database_connection()
     logging.info('项目已启动')

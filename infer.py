@@ -55,8 +55,8 @@ def infer(order_id):
         print("error3_elder"+error3_elder)             #发现老人，坐姿，手持餐具,
         print("error_wangtu"+error_wangtu)             #无异常,
         print("error_fanpai"+error_fanpai)             #无异常,
-        print("error_season"+error_season)             #无异常
-        print("judge"+judge)   #{'isSuccess': False, 'error_service': '服务类型与上传图片不符异常，上传图片类型为：理发服务，而工单原本类型为：煮正餐26.0。'}
+        print("error_season"+error_season)             #无输出
+        print(judge)   #{'isSuccess': False, 'error_service': '服务类型与上传图片不符异常，上传图片类型为：理发服务，而工单原本类型为：煮正餐26.0。'}
 
     except Error as e:
         print(f"Error: {e}")

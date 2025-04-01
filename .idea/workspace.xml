@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70dcbcaf-a096-4829-a075-d41263cca2a4" name="更改" comment="new">
-      <change afterPath="$PROJECT_DIR$/infer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/work_flow/service_identification_168157.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blueprints/work_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/blueprints/work_order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_flow/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/work_flow/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_flow/cook_order_before.py" beforeDir="false" afterPath="$PROJECT_DIR$/work_flow/cook_order_before.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_flow/cook_order_center.py" beforeDir="false" afterPath="$PROJECT_DIR$/work_flow/cook_order_center.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_flow/cook_order_end.py" beforeDir="false" afterPath="$PROJECT_DIR$/work_flow/cook_order_end.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_flow/wangtu_fanpai.py" beforeDir="false" afterPath="$PROJECT_DIR$/work_flow/wangtu_fanpai.py" afterDir="false" />
-    </list>
+    <list default="true" id="70dcbcaf-a096-4829-a075-d41263cca2a4" name="更改" comment="new" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -219,7 +206,7 @@
       <workItem from="1743161252134" duration="30000" />
       <workItem from="1743493791433" duration="73000" />
       <workItem from="1743495956203" duration="215000" />
-      <workItem from="1743496188809" duration="1022000" />
+      <workItem from="1743496188809" duration="1427000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <option name="closed" value="true" />
@@ -253,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743151325066</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="new">
+      <option name="closed" value="true" />
+      <created>1743497563418</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1743497563418</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,7 +309,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="new" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/yanglao_sys$infer.coverage" NAME="infer 覆盖结果" MODIFIED="1743497207048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/yanglao_sys$infer.coverage" NAME="infer 覆盖结果" MODIFIED="1743497551555" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/yanglao_sys$app.coverage" NAME="app 覆盖结果" MODIFIED="1743151837315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/yanglao_sys$Flask__app_py_.coverage" NAME="Flask (app.py) 覆盖结果" MODIFIED="1743046152630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

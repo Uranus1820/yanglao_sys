@@ -36,8 +36,8 @@ def center_results(urls:str):
     }
 
     response = requests.post(url=url + 'understand', data=data)
-    print(response.status_code)
-    print(response.json())
+    # print(response.status_code)
+    # print(response.json())
 
     datas = []
     for img in response.json():
@@ -111,8 +111,8 @@ def center_results(urls:str):
     }
 
     response = requests.post(url=url + 'analysis', data=data)
-    print(response.status_code)
-    print(response.json())
+    # print(response.status_code)
+    # print(response.json())
 
     x = response.json()['response']
     x = json.loads(x[8:-4])

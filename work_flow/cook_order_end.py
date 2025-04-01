@@ -31,8 +31,8 @@ def end_results(urls):
 
     # ========== 请求处理部分 ==========
     response = requests.post(url=url + 'understand', data=data)
-    print(f"状态码: {response.status_code}")
-    print("原始响应:", response.json())
+    # print(f"状态码: {response.status_code}")
+    # print("原始响应:", response.json())
 
     # ========== 数据解析部分 ==========
     datas = []

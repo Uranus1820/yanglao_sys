@@ -27,6 +27,8 @@ def get_all_order_id():
         order_data = {
             "orderId": order.id,
             "no": order.no,
+            "handler": order.handler,
+            "member": order.member,
             "serviceId": order.service_id,
             "projectType": service_name,
             "flag":flag
@@ -42,6 +44,7 @@ def infer(order_id):
     orderId = [int(x) for x in order_id.split(',')]
     orders=[]
     for id in orderId:
+
         orders.append(ServiceLogModel.query.filter_by(id=id).first().to_dict())
 
 

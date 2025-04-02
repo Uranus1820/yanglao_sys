@@ -7,7 +7,7 @@ from work_flow.service_identification_168157 import judge_service_type
 
 
 def infer(order_id):
-    order_id = '540549'
+    order_id = order_id
     conn = None
     cursor = None
     try:
@@ -27,7 +27,7 @@ def infer(order_id):
         cursor.execute(order_query)
         row = cursor.fetchall()[0]
 
-        #print(row)
+        print(row)
 
         member_id = str(row[0])
         employee_id = row[1]
@@ -57,7 +57,24 @@ def infer(order_id):
         print("error_fanpai"+error_fanpai)             #无异常,
         print("error_season"+error_season)             #无输出
         print(judge)   #{'isSuccess': False, 'error_service': '服务类型与上传图片不符异常，上传图片类型为：理发服务，而工单原本类型为：煮正餐26.0。'}
-
+        data={
+            "member_id": member_id,
+            "employee_id": employee_id,
+            "start_time": start_time,
+            "end_time": end_time,
+            "error1_elder": error1_elder,
+            "error1_door": error1_door,
+            "error2_food_ingre": error2_food_ingre,
+            "error2_elder": error2_elder,
+            "error2_assistant": error2_assistant,
+            "error3_signature": error3_signature,
+            "error3_elder": error3_elder,
+            "error_wangtu": error_wangtu,
+            "error_fanpai": error_fanpai,
+            "error_season": error_season,
+        }
+        print(data)
+        return data
     except Error as e:
         print(f"Error: {e}")
     finally:
@@ -66,5 +83,5 @@ def infer(order_id):
             conn.close()
 
 if __name__ == "__main__":
-    infer('540549')
+    data=infer('540549')
 

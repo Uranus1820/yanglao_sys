@@ -4,6 +4,9 @@ from datetime import datetime
 from database_models import WorkOrderModel, ServiceModel,ServiceLogModel
 import requests
 
+from infer import infer
+from work_flow.logic import logic
+
 bp = Blueprint(name='work_order', import_name=__name__,url_prefix='/work_order')
 # 接收前端工单号并返回对应数据
 @bp.route('/list')
@@ -27,31 +30,54 @@ def get_all_order_id():
         order_data = {
             "orderId": order.id,
             "no": order.no,
-            "handler": order.handler,
-            "member": order.member,
+            #"handler": order.handler,
+            "member": order.member_id,
             "serviceId": order.service_id,
             "projectType": service_name,
             "flag":flag
         }
         data['list'].append(order_data)
 
+
+
     return jsonify(data)
 
 
-@bp.route('/infer/<order_id>', methods=['GET'])
-def infer(order_id):
-    print(order_id)
-    orderId = [int(x) for x in order_id.split(',')]
-    orders=[]
-    for id in orderId:
+@bp.route('/infer', methods=['GET'])
+def infering():
+    """
+    返回id进行infer
+    """
+    order_ids = request.args.get('order_id')  # '3888,3889'
+    orderId = order_ids.split(',')
+    print(orderId)
 
-        orders.append(ServiceLogModel.query.filter_by(id=id).first().to_dict())
+    orderId=['540549','540550']
+    correct = len(orderId)
+    print(correct)
+    orders={
+        "correct":correct,
+        "suspect":len(orderId)-correct,
+        "error":len(orderId)-correct,
+        "suspect_info":[],
+        "error_info":[],
 
+    }
 
+    for i in orderId:
+        data=infer(i)
+        error=logic(data)
+        if error["abnormal_count"]:
+            correct-=1
+            orders["error_info"].append({"id":i,"error":error["abnormal_info"]})
+
+    orders["correct"]=correct
+    orders["suspect"]=len(orderId)-correct
+    orders["error"]=len(orderId)-correct
 
     print(orders)
 
-    return jsonify(orders.to_dict()), 200
+    return jsonify(orders), 200
 
 
 

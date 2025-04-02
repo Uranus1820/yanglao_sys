@@ -61,7 +61,7 @@ def infering():
         "error":len(orderId)-correct,
         "suspect_info":[],
         "error_info":[],
-
+        "error_url":[]
     }
 
     for i in orderId:
@@ -70,10 +70,12 @@ def infering():
         if error["abnormal_count"]:
             correct-=1
             orders["error_info"].append({"id":i,"error":error["abnormal_info"]})
+            orders["error_url"].append({"id":i,"error_url":error["abnormal_url"]})
+            #orders["error_info"].append({"id":i,"error":error["abnormal_info"],"url":error["abnormal_url"]})
 
     orders["correct"]=correct
     orders["suspect"]=len(orderId)-correct
-    orders["error"]=len(orderId)-correct
+    orders["error"]=0
 
     print(orders)
 

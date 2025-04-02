@@ -57,6 +57,11 @@ def infer(order_id):
         print("error_fanpai"+error_fanpai)             #无异常,
         print("error_season"+error_season)             #无输出
         print(judge)   #{'isSuccess': False, 'error_service': '服务类型与上传图片不符异常，上传图片类型为：理发服务，而工单原本类型为：煮正餐26.0。'}
+        all_url={
+            "start_img":start_img,
+            "img_rul":img_rul,
+            "end_img":end_img
+        }
         data={
             "member_id": member_id,
             "employee_id": employee_id,
@@ -72,6 +77,8 @@ def infer(order_id):
             "error_wangtu": error_wangtu,
             "error_fanpai": error_fanpai,
             "error_season": error_season,
+            "judge": judge,
+            "all_url": all_url
         }
         print(data)
         return data

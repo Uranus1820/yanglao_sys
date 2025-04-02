@@ -28,11 +28,12 @@ def logic(data):
     time_difference = end - start_time
     hours = time_difference.seconds // 3600
     if hours > 3:
-        data.append({"key": "error_time", "value": "服务时间为：" + str(hours) + "异常"})
+        abnormal_info.append({"key": "error_time", "value": "服务时间为：" + str(hours) + "异常"})
         abnormal_count+=1
 
     result = {
         "abnormal_count": abnormal_count,
-        "abnormal_info": abnormal_info
+        "abnormal_info": abnormal_info,
+        "abnormal_url":data["all_url"]
     }
     return result

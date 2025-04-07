@@ -50,4 +50,5 @@ error_mapping = {
     "error_duration": "服务时长异常",
     "error3_signature": "服务后：签字表异常",
     "error3_elder": "服务后，不存在老人异常",
+    "judge":"服务类型与上传图片不符异常"
 }

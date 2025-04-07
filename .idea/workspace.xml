@@ -8,8 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blueprints/work_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/blueprints/work_order.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/work_flow/logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/work_flow/logic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yanglao_fronted/src/hooks/usePagination.ts" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/src/hooks/usePagination.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yanglao_fronted/src/views/DetectionBatch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/src/views/DetectionBatch.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,26 +72,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Flask 服务器.Flask (app.py).executor&quot;: &quot;Run&quot;,
-    &quot;Flask 服务器.yanglao_sys.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.infer.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/yanglao_sys/yanglao_fronted&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Flask 服务器.Flask (app.py).executor": "Run",
+    "Flask 服务器.yanglao_sys.executor": "Debug",
+    "Python.app.executor": "Run",
+    "Python.infer.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "E:/yanglao_sys/yanglao_fronted",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.stylelint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\yanglao_sys\yanglao_fronted" />
@@ -212,7 +211,7 @@
       <workItem from="1743648694784" duration="1885000" />
       <workItem from="1743683003738" duration="234000" />
       <workItem from="1743683831951" duration="770000" />
-      <workItem from="1743990145281" duration="4926000" />
+      <workItem from="1743990145281" duration="6774000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <option name="closed" value="true" />
@@ -286,7 +285,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743683151364</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="new">
+      <option name="closed" value="true" />
+      <created>1744000206809</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1744000206809</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,7 +356,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/yanglao_sys$infer.coverage" NAME="infer 覆盖结果" MODIFIED="1743506498957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/yanglao_sys$yanglao_sys.coverage" NAME="yanglao_sys 覆盖结果" MODIFIED="1743574605170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/yanglao_sys$app.coverage" NAME="app 覆盖结果" MODIFIED="1743999781754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/yanglao_sys$app.coverage" NAME="app 覆盖结果" MODIFIED="1744001366735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/yanglao_sys$Flask__app_py_.coverage" NAME="Flask (app.py) 覆盖结果" MODIFIED="1743684350050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

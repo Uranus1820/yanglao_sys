@@ -13,22 +13,59 @@ bp = Blueprint(name='work_order', import_name=__name__,url_prefix='/work_order')
 def get_all_order_id():
     data = {"list": [], "total": []}
     if request.args.get('orderId'):
-        order_id = request.args.get('orderId')
-        order=WorkOrderModel.query.filter_by(id=order_id).first()
-        service = get_work_orderByid(order.id, order.service_id)
-        service_name = ServiceModel.query.filter_by(id=order.service_id).first().name
-        order_data = {
-            "orderId": order.id,
-            "no": order.no,
-            # "handler": order.handler,
-            "member": order.member_id,
-            "projectType": service_name,
-            "serviceId": order.service_id,
-        }
-        data['list'].append(order_data)
-        data["total"]=1
-        print(order_data)
+        #     order_id = request.args.get('orderId')
+        #     order=WorkOrderModel.query.filter_by(id=order_id).first()
+        #     service = get_work_orderByid(order.id, order.service_id)
+        #     service_name = ServiceModel.query.filter_by(id=order.service_id).first().name
+        #     order_data = {
+        #         "orderId": order.id,
+        #         "no": order.no,
+        #         # "handler": order.handler,
+        #         "member": order.member_id,
+        #         "projectType": service_name,
+        #         "serviceId": order.service_id,
+        #     }
+        #     data['list'].append(order_data)
+        #     data["total"]=1
+        #     print(order_data)
+        #     return jsonify(data)
+        order_id = request.args.get('orderId', 0, type=int)
+        page = request.args.get('currentPage', 1, type=int)
+        per_page = request.args.get('size', 10, type=int)
+        # 如果传入了 orderId，就按照“从该 orderId 开始”的逻辑查询
+        # 并按 id 进行升序排列，以保证分页行为一致
+        query = WorkOrderModel.query
+        if order_id > 0:
+            query = query.filter(WorkOrderModel.id >= order_id)
+
+        query = query.order_by(WorkOrderModel.id.asc())
+
+        # 调用 paginate 进行分页
+        pagination = query.paginate(page=page, per_page=per_page, error_out=False)
+        # 获取当前页的数据
+        orders = pagination.items
+        data['total'] = pagination.total
+        for order in orders:
+            service = get_work_orderByid(order.id, order.service_id)
+            service_model = ServiceModel.query.filter_by(id=order.service_id).first()
+            service_name = service_model.name if service_model else "未知"
+            flag = 1
+            if service is None:
+                flag = 0
+            order_data = {
+                "orderId": order.id,
+                "no": order.no,
+                "member": order.member_id,
+                "serviceId": order.service_id,
+                "projectType": service_name,
+                "flag": flag
+            }
+            data['list'].append(order_data)
+
         return jsonify(data)
+
+
+
 
     orders=[]
     page = int(request.args.get('currentPage', 1))  # 获取页码，默认为第一页
@@ -69,10 +106,8 @@ def infering():
     order_ids = request.args.get('order_id')  # '3888,3889'
     orderId = order_ids.split(',')
     print(orderId)
-
-    orderId=['540549']
+    orderId=["540549"]
     correct = len(orderId)
-    print(correct)
     orders={
         "correct":correct,
         "suspect":len(orderId)-correct,
@@ -81,7 +116,6 @@ def infering():
         "error_info":[],
         "error_url":[]
     }
-
     for i in orderId:
         data=infer(i)
         error=logic(data)
@@ -148,17 +182,4 @@ def get_work_orderByid(order_id,service_id):
     }
     #print_red(data)
     return data
-error_mapping = {
-    "error2_food_ingr": "服务中：食材不匹配异常",
-    "error2_elder": "服务中：无老人异常",
-    "error2_assisstant": "服务中：无志愿者异常",
-    "error1_elder": "服务前：不存在老人异常",
-    "error_season": "着装与季节不符异常",
-    "error_service": "上传图片与服务不符异常",
-    "error_wang_fan": "网图、翻拍异常",
-    "error1_door": "服务前：缺门牌号异常",
-    "error_duration": "服务时长异常",
-    "error3_signature": "服务后：签字表异常",
-    "error3_elder": "服务后，不存在老人异常",
-}
 

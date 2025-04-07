@@ -74,6 +74,10 @@
                 {{ item.value }}
               </div>
             </el-collapse-item>
+
+
+
+            
           </el-collapse>
         </el-tab-pane>
       </el-tabs>

@@ -18,7 +18,7 @@ interface IDefaultPaginationData {
   const defaultPaginationData: IDefaultPaginationData = {
     total: 0,
     currentPage: 1,
-    pageSize: 2, //每页是个数据
+    pageSize: 10, //每页是个数据
     layout: "total, prev, pager, next"
   }
   

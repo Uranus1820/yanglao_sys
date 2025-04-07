@@ -36,11 +36,13 @@ def infer(order_id):
         end_img = row[4]
         service_type = row[5]
 
-        judge = judge_service_type(img_rul, service_type)
-        error_wangtu, error_fanpai, think = wangtu_results(start_img + ',' + img_rul + ',' + end_img)
-        start_time, error1_elder, error1_door, error_season = before_results(start_img)
-        error2_food_ingre, error2_elder, error2_assistant = center_results(img_rul)
-        error3_signature, error3_elder, end_time = end_results(end_img)
+        url = 'http://127.0.0.1:6000/'
+
+        judge = judge_service_type(url, img_rul, service_type)
+        error_wangtu, error_fanpai, think = wangtu_results(url, start_img + ',' + img_rul + ',' + end_img)
+        start_time, error1_elder, error1_door, error_season = before_results(url, start_img)
+        error2_food_ingre, error2_elder, error2_assistant = center_results(url, img_rul)
+        error3_signature, error3_elder, end_time = end_results(url, end_img)
 
 
         print("结果")

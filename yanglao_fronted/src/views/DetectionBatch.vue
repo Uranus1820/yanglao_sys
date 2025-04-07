@@ -15,6 +15,11 @@
               <el-form-item prop="orderId" label="工单号">
                 <el-input v-model="searchData.orderId" placeholder="请输入" />
               </el-form-item>
+              <el-form-item prop="order" label="服务内容">
+                <el-input v-model="searchData.order" placeholder="请输入" />
+              </el-form-item>
+
+
               <el-form-item>
                 <el-button type="primary" :icon="Search" @click="handleSearch">查询</el-button>
               </el-form-item>
@@ -22,8 +27,9 @@
 
           </div>
         </template>
-        <el-table :data="tableData" style="width: 100%" @selection-change="handleSelectionChange">
-          <el-table-column type="selection" width="55" />
+        <el-table :data="tableData" style="width: 100%" @selection-change="handleSelectionChange"
+        row-key="orderId" reserve-selection>
+          <el-table-column type="selection" width="55" reserve-selection="true"/>
           <!-- <el-table-column label="Date" width="120">
                     <template #default="scope">{{ scope.row.date }}</template>
                   </el-table-column> -->
@@ -146,6 +152,7 @@ const searchData = reactive({
   member: "",//老人id
   handler: "",//服务者id
   orderId: "",//工单号
+  order:""
 })
 //分页工单
 const tableData = ref<OrderInfo[]>([])
@@ -162,7 +169,8 @@ const getOrderData = () => {
       size: paginationData.pageSize,
       member: searchData.member || undefined,
       handler: searchData.handler || undefined,
-      orderId: searchData.orderId || undefined
+      orderId: searchData.orderId || undefined,
+      order:searchData.order || undefined
     }
   }).then((res) => {
     paginationData.total = res.data.total
@@ -263,11 +271,15 @@ onMounted(() => {
 
 
 const handleSelectionChange = (selection: OrderInfo[]) => {
-  selectedOrder.value = selection
+
+    selectedOrder.value = selection
+  
+ 
 };
 
 const detectOrder = async () => {
   if (!selectedOrder.value || selectedOrder.value.length === 0) {
+
     ElMessage.warning('请先选择要检测的工单')
     return
   }

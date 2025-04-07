@@ -1,9 +1,9 @@
 import requests
 import json
 
-def before_results(urls):
+def before_results(url, urls):
     # API 基础 URL
-    url = 'http://mofrp.top:10846/'
+    # url = 'http://mofrp.top:10846/'
 
     # 定义数据
     data = {

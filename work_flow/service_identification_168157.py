@@ -1,8 +1,8 @@
 import requests
 from collections import Counter
 
-def judge_service_type(img_urls, service_type):
-    url = 'http://mofrp.top:10846/'
+def judge_service_type(url, img_urls, service_type):
+    # url = 'http://mofrp.top:10846/'
     # img_urls = ",".join(service_img)
 
     prompt = (

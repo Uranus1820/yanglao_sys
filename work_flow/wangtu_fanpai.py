@@ -1,8 +1,8 @@
 import requests
 import json
 
-def wangtu_results(urls):
-    url = 'http://mofrp.top:10846/'
+def wangtu_results(url, urls):
+    # url = 'http://mofrp.top:10846/'
     data = {
         'prompt': (
             '# 角色定义\n'

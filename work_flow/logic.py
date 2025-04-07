@@ -16,7 +16,7 @@ def logic(data):
                 continue
             if any(word in value for word in abnormal_keywords):
 
-                abnormal_info.append({"key":error_mapping["key"],"value":value})
+                abnormal_info.append({"key":error_mapping[key],"value":value})
                 abnormal_count += 1
 
     # start_time = datetime.strptime(data["start_time"].rstrip(','), "%Y-%m-%d %H:%M:%S")
@@ -39,7 +39,7 @@ def logic(data):
     }
     return result
 error_mapping = {
-    "error2_food_ingr": "服务中：食材不匹配异常",
+    "error2_food_ingre": "服务中：食材不匹配异常",
     "error2_elder": "服务中：无老人异常",
     "error2_assistant": "服务中：无志愿者异常",
     "error1_elder": "服务前：不存在老人异常",

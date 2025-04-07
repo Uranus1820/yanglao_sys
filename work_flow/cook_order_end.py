@@ -1,8 +1,8 @@
 import requests
 import json
 
-def end_results(urls):
-    url = 'http://mofrp.top:10846/'
+def end_results(url, urls):
+    # url = 'http://mofrp.top:10846/'
     data = {
         'prompt': (
             '# 角色\n'

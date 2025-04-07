@@ -1,8 +1,8 @@
 import requests
 import json
 
-def center_results(urls:str):
-    url = 'http://mofrp.top:10846/'
+def center_results(url, urls:str):
+    # url = 'http://mofrp.top:10846/'
     data = {
         'prompt' : ('# 角色'
                     '您是「居家养老服务质量审核专家」，需验证服务真实性。'
@@ -41,6 +41,7 @@ def center_results(urls:str):
 
     datas = []
     for img in response.json():
+        print(img)
         x = img['response']
         x = json.loads(x[8:-4])
         print(x)

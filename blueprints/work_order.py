@@ -13,22 +13,6 @@ bp = Blueprint(name='work_order', import_name=__name__,url_prefix='/work_order')
 def get_all_order_id():
     data = {"list": [], "total": []}
     if request.args.get('orderId'):
-        #     order_id = request.args.get('orderId')
-        #     order=WorkOrderModel.query.filter_by(id=order_id).first()
-        #     service = get_work_orderByid(order.id, order.service_id)
-        #     service_name = ServiceModel.query.filter_by(id=order.service_id).first().name
-        #     order_data = {
-        #         "orderId": order.id,
-        #         "no": order.no,
-        #         # "handler": order.handler,
-        #         "member": order.member_id,
-        #         "projectType": service_name,
-        #         "serviceId": order.service_id,
-        #     }
-        #     data['list'].append(order_data)
-        #     data["total"]=1
-        #     print(order_data)
-        #     return jsonify(data)
         order_id = request.args.get('orderId', 0, type=int)
         page = request.args.get('currentPage', 1, type=int)
         per_page = request.args.get('size', 10, type=int)
@@ -64,34 +48,61 @@ def get_all_order_id():
 
         return jsonify(data)
 
-
-
-
-    orders=[]
-    page = int(request.args.get('currentPage', 1))  # 获取页码，默认为第一页
-    per_page = int(request.args.get('size', 10))  # 获取每页显示的数据量，默认为 10 条
-    pagination = WorkOrderModel.query.paginate(page=page, per_page=per_page,error_out=False)  # 使用 paginate() 方法进行分页查询，不抛出异常
-    orders = pagination.items
-    data['total'] = pagination.total
-    for order in orders:
-        service = get_work_orderByid(order.id, order.service_id)
-        service_name=ServiceModel.query.filter_by(id=order.service_id).first().name
-        if service_name is None:
-            service_name="未知"
-        else:
-            service_name=service_name
-        flag=1
-        if service is None: flag=0
-        order_data = {
-            "orderId": order.id,
-            "no": order.no,
-            #"handler": order.handler,
-            "member": order.member_id,
-            "serviceId": order.service_id,
-            "projectType": service_name,
-            "flag":flag
-        }
-        data['list'].append(order_data)
+    elif request.args.get('order'):
+        order_name=request.args.get('order')
+        page = int(request.args.get('currentPage', 1))  # 获取页码，默认为第一页
+        per_page = int(request.args.get('size', 10))  # 获取每页显示的数据量，默认为 10 条
+        pagination=ServiceLogModel.query.filter(ServiceLogModel.service_content.like(f"%{order_name}%")).paginate(page=page, per_page=per_page,error_out=False)
+        orders = pagination.items
+        data['total'] = pagination.total
+        for order in orders:
+            service = get_work_orderByid(order.order_id, order.id)
+            member_id=WorkOrderModel.query.filter_by(id=order.order_id).first().member_id
+            handler=WorkOrderModel.query.filter_by(id=order.order_id).first().handler
+            # service_name = ServiceModel.query.filter_by(id=order.id).first().service_name
+            # if service_name is None:
+            #     service_name = "未知"
+            # else:
+            #     service_name = service_name
+            flag = 1
+            if service is None: flag = 0
+            order_data = {
+                "orderId": order.order_id,
+                #"no": order.no,
+                "handler": handler,
+                "member": member_id,
+                "serviceId": order.id,
+                "projectType": order.service_content,
+                "flag": flag
+            }
+            data['list'].append(order_data)
+        return jsonify(data)
+    else:
+        orders=[]
+        page = int(request.args.get('currentPage', 1))  # 获取页码，默认为第一页
+        per_page = int(request.args.get('size', 10))  # 获取每页显示的数据量，默认为 10 条
+        pagination = WorkOrderModel.query.paginate(page=page, per_page=per_page,error_out=False)  # 使用 paginate() 方法进行分页查询，不抛出异常
+        orders = pagination.items
+        data['total'] = pagination.total
+        for order in orders:
+            service = get_work_orderByid(order.id, order.service_id)
+            service_name=ServiceModel.query.filter_by(id=order.service_id).first().name
+            if service_name is None:
+                service_name="未知"
+            else:
+                service_name=service_name
+            flag=1
+            if service is None: flag=0
+            order_data = {
+                "orderId": order.id,
+                "no": order.no,
+                "handler": order.handler,
+                "member": order.member_id,
+                "serviceId": order.service_id,
+                "projectType": service_name,
+                "flag":flag
+            }
+            data['list'].append(order_data)
 
 
 
@@ -106,7 +117,7 @@ def infering():
     order_ids = request.args.get('order_id')  # '3888,3889'
     orderId = order_ids.split(',')
     print(orderId)
-    orderId=["540549"]
+    #orderId=["540549"]
     correct = len(orderId)
     orders={
         "correct":correct,

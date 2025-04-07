@@ -36,7 +36,7 @@ def infer(order_id):
         end_img = row[4]
         service_type = row[5]
 
-        url = 'http://127.0.0.1:6000/'
+        url = 'http://hk.mofrp.top:10846/'
 
         judge = judge_service_type(url, img_rul, service_type)
         error_wangtu, error_fanpai, think = wangtu_results(url, start_img + ',' + img_rul + ',' + end_img)

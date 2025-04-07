@@ -12,6 +12,24 @@ bp = Blueprint(name='work_order', import_name=__name__,url_prefix='/work_order')
 @bp.route('/list')
 def get_all_order_id():
     data = {"list": [], "total": []}
+    if request.args.get('orderId'):
+        order_id = request.args.get('orderId')
+        order=WorkOrderModel.query.filter_by(id=order_id).first()
+        service = get_work_orderByid(order.id, order.service_id)
+        service_name = ServiceModel.query.filter_by(id=order.service_id).first().name
+        order_data = {
+            "orderId": order.id,
+            "no": order.no,
+            # "handler": order.handler,
+            "member": order.member_id,
+            "projectType": service_name,
+            "serviceId": order.service_id,
+        }
+        data['list'].append(order_data)
+        data["total"]=1
+        print(order_data)
+        return jsonify(data)
+
     orders=[]
     page = int(request.args.get('currentPage', 1))  # 获取页码，默认为第一页
     per_page = int(request.args.get('size', 10))  # 获取每页显示的数据量，默认为 10 条
@@ -52,7 +70,7 @@ def infering():
     orderId = order_ids.split(',')
     print(orderId)
 
-    orderId=['540549','540550']
+    orderId=['540549']
     correct = len(orderId)
     print(correct)
     orders={
@@ -70,12 +88,12 @@ def infering():
         if error["abnormal_count"]:
             correct-=1
             orders["error_info"].append({"id":i,"error":error["abnormal_info"]})
-            orders["error_url"].append({"id":i,"error_url":error["abnormal_url"]})
+            #orders["error_url"].append({"id":i,"url":error["abnormal_url"]})
             #orders["error_info"].append({"id":i,"error":error["abnormal_info"],"url":error["abnormal_url"]})
 
     orders["correct"]=correct
-    orders["suspect"]=len(orderId)-correct
-    orders["error"]=0
+    orders["suspect"]=0
+    orders["error"]=len(orderId)-correct
 
     print(orders)
 

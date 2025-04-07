@@ -9,8 +9,11 @@
               <el-form-item prop="serviceId" label="老人id">
                 <el-input v-model="searchData.member" placeholder="请输入" />
               </el-form-item>
-              <el-form-item prop="orderId" label="服务者id">
+              <el-form-item prop="handler" label="服务者id">
                 <el-input v-model="searchData.handler" placeholder="请输入" />
+              </el-form-item>
+              <el-form-item prop="orderId" label="工单号">
+                <el-input v-model="searchData.orderId" placeholder="请输入" />
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" :icon="Search" @click="handleSearch">查询</el-button>
@@ -138,6 +141,7 @@ const { paginationData, handleCurrentChange, handleSizeChange } = usePagination(
 const searchData = reactive({
   member: "",//老人id
   handler: "",//服务者id
+  orderId: "",//工单号
 })
 //分页工单
 const tableData = ref<OrderInfo[]>([])
@@ -154,6 +158,7 @@ const getOrderData = () => {
       size: paginationData.pageSize,
       member: searchData.member || undefined,
       handler: searchData.handler || undefined,
+      orderId: searchData.orderId || undefined
     }
   }).then((res) => {
     paginationData.total = res.data.total

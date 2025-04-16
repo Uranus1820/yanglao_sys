@@ -112,8 +112,8 @@ def center_results(url, urls:str):
     }
 
     response = requests.post(url=url + 'analysis', data=data)
-    # print(response.status_code)
-    # print(response.json())
+    print(response.status_code)
+    print(response.json())
 
     x = response.json()['response']
     x = json.loads(x[8:-4])
@@ -125,8 +125,8 @@ def center_results(url, urls:str):
 
 if __name__ == "__main__":
     center_images = "http://www.mcwajyfw.com/imagemc/202401/20240108/11/6/f44133e280f94f65a939729b156a019f1704682364557.jpeg,http://www.mcwajyfw.com/imagemc/202401/20240108/3/2/7d863c93d5ef461dbbc2e1e1c97536b61704682383083.jpeg,http://www.mcwajyfw.com/imagemc/202401/20240108/2/5/14a60a448fdb4ccc9ba390045df99b601704683320010.jpeg,http://www.mcwajyfw.com/imagemc/202401/20240108/7/2/1ad7d9d289ac423ebebfc9ec9f05c9ca1704684681614.jpeg,http://www.mcwajyfw.com/imagemc/202401/20240108/7/7/37952d5a447b4d7db145f6ba93a061cb1704686683057.jpeg,http://www.mcwajyfw.com/imagemc/202401/20240108/0/1/1ba1aafdee7e499688015ade35cb7c461704688386457.jpeg,http://www.mcwajyfw.com/imagemc/202401/20240108/0/15/78ec41f177da43d9ba94537b2298e8491704690099395.jpeg,http://www.mcwajyfw.com/imagemc/202401/20240108/1/9/c2078feb365c4775a12266d62f343a5a1704690184238.jpeg"
-
-    food_ingre_error, error2_elder, error2_assistant = center_results(center_images)
+    url = 'http://mofrp.top:10846/'
+    food_ingre_error, error2_elder, error2_assistant = center_results(url, center_images)
 
     print(food_ingre_error)
     print(error2_elder)

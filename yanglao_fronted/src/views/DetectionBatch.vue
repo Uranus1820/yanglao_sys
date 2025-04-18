@@ -3,7 +3,7 @@
     <div class="my-header search-wrapper">
       <el-card style="width: 1000px">
         <template #header>
-          <div class="card-header">
+          <div class="card-header-muti">
             <div class="describe_word">工单</div>
             <el-form :inline="true" :model="searchData">
               <el-form-item prop="serviceId" label="老人id">
@@ -21,7 +21,7 @@
 
 
               <el-form-item>
-                <el-button type="primary" :icon="Search" @click="handleSearch">查询</el-button>
+                <el-button type="primary" :icon="Search" @click="handleSearch" class="content-center">查询</el-button>
               </el-form-item>
             </el-form>
 
@@ -74,6 +74,30 @@
           <div style="margin-bottom: 15px;">{{orderInfo.id}}号工单检测结果:
             <span style="color: #f67572;">异常工单</span>
           </div>
+
+          <el-descriptions title="工单照片" direction="vertical" :column="3" size="default" border style="margin-bottom: 20px;">
+            <el-descriptions-item label-align="center" align="center" label="服务前照片"><el-button type="primary"
+                @click="imageState = 1">查看</el-button></el-descriptions-item>
+            <el-descriptions-item label-align="center" align="center" label="服务中照片"><el-button type="primary"
+                @click="imageState = 2">查看</el-button></el-descriptions-item>
+            <el-descriptions-item label-align="center" align="center" label="服务后照片"><el-button type="primary"
+                @click="imageState = 3">查看</el-button></el-descriptions-item>
+          </el-descriptions>
+
+          <el-dialog v-model="dialogVisible" title="照片" width="1500">
+            <el-row type="flex" justify="center" align="middle">
+              <el-col v-for="(image, index) in showimages" :key="index" :sm="12" :lg="6">
+                <el-result :title="`图片${index+1}`">
+                  <template #icon>
+                    <el-image
+                      :src="image"
+                    />
+                  </template>
+                </el-result>
+                </el-col>
+              </el-row>
+          </el-dialog>
+
           <el-collapse v-model="activeNamesCollapse" @change="handleChange">
             <el-collapse-item v-for="(item, index) in orderInfo.error" :key="index" :title="item.key" :name="index">
               <div style="font-size: medium;">
@@ -83,7 +107,6 @@
 
 
 
-            
           </el-collapse>
         </el-tab-pane>
       </el-tabs>
@@ -125,6 +148,17 @@ interface OrderDetectResult {
   error: number;
   suspect_info: any[];  // 根据实际需求定义类型
   error_info: ErrorInfo[];
+  error_url: imgUrl[]
+}
+
+interface url{
+  start_img :string[],
+  img_rul :string[],
+  end_img :string[],
+}
+interface imgUrl{
+  id: string,
+  url:url
 }
 
 interface OrderInfo {
@@ -159,6 +193,33 @@ const tableData = ref<OrderInfo[]>([])
 //选中的工单数组
 const selectedOrder = ref<OrderInfo[]>()
 
+//要显示某时段（前中后）
+const imageState = ref(0)
+//要显示某时段的照片
+const showimages =ref()
+//照片某时段照片的对话框
+
+const dialogVisible = ref(false)
+//所有工单的照片
+const allImage = ref<imgUrl[]>([])
+//单个工单的照片
+const imagesInfo = ref<imgUrl>({
+  id : "",
+  url:{
+    start_img:[],
+    img_rul:[],
+    end_img:[],
+  }
+});
+
+
+//展示那些图片
+watch(imageState,()=>{
+  if(imageState.value == 1) showimages.value = imagesInfo.value.url.start_img
+  else if(imageState.value == 2) showimages.value= imagesInfo.value.url.img_rul
+  else if(imageState.value == 3) showimages.value =  imagesInfo.value.url.end_img
+  dialogVisible.value = imageState.value > 0
+})
 
 const getOrderData = () => {
   axios({
@@ -196,7 +257,16 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getOrde
 const activeNameTab = ref('first')
 //处理标签页的点击事件
 const handleClick = (tab: TabsPaneContext, event: Event) => {
-  console.log(tab, event)
+  imagesInfo.value = allImage.value[Number(tab.index)-1]
+  console.log("tab")
+  console.log(tab)
+  console.log("tab.index")
+  console.log(tab.index)
+  console.log("allImage")
+  console.log(allImage.value)
+  console.log("imagesInfo")
+  console.log(imagesInfo.value)
+
 }
 
 
@@ -306,6 +376,7 @@ const detectOrder = async () => {
     
     // 更新异常工单列表
     exceptionOrder.value = result.error_info
+    allImage.value = result.error_url
     
     // 更新图表
     option.value.series[0].data = pieData.value
@@ -369,7 +440,11 @@ const detectOrder = async () => {
   justify-content: space-between;
   gap: 16px;
 }
-
+.card-header-muti{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
 .describe_word {
   margin-top: 3px;
   font-size: 20px;
@@ -380,4 +455,5 @@ const detectOrder = async () => {
   color: #6b778c;
   font-size: 20px;
 }
+
 </style>

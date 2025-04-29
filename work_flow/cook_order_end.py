@@ -5,7 +5,6 @@ import requests
 import json
 from flask import Blueprint, jsonify,request,abort
 from work_flow.siliconAPI import get_api_inference
-bp = Blueprint(name='image_end', import_name=__name__,url_prefix='/image_end')
 prompt = (
             '# 角色\n'
             '您作为「双图时序核验专家」，需通过服务前/后双图比对验证服务真实性。\n\n'

@@ -5,33 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70dcbcaf-a096-4829-a075-d41263cca2a4" name="更改" comment="new">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/yanglao_sys.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/yanglao_sys.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blueprints/work_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/blueprints/work_order.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infer.py" beforeDir="false" afterPath="$PROJECT_DIR$/infer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/work_flow/logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/work_flow/logic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_flow/service_identification_168157.py" beforeDir="false" afterPath="$PROJECT_DIR$/work_flow/service_identification_168157.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/.browserslistrc" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/.browserslistrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/babel.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/src/components/HelloWorld.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/src/shims-vue.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/src/shims-vue.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/src/store/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/src/views/AboutView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/src/views/AboutView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/src/views/DetectionBatch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/src/views/DetectionBatch.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/src/views/HomeView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanglao_fronted/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/yanglao_fronted/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +74,7 @@
   "keyToString": {
     "Flask 服务器.Flask (app.py).executor": "Run",
     "Flask 服务器.yanglao_sys.executor": "Debug",
-    "Python.app.executor": "Debug",
+    "Python.app.executor": "Run",
     "Python.infer.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -326,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744803839945</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="new">
+      <option name="closed" value="true" />
+      <created>1744956410074</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1744956410074</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

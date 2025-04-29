@@ -1,7 +1,6 @@
 from datetime import datetime
 import json
 
-from torch import last_error
 
 # 定义判断是否异常的关键词
 abnormal_keywords = ["异常", "不存在", "未发现"]

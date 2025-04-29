@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify,request,abort
+from flask import Blueprint, jsonify, request, abort, Response
 import json
 from datetime import datetime
 from database_models import WorkOrderModel, ServiceModel,ServiceLogModel
@@ -42,8 +42,7 @@ def get_all_order_id():
                 "flag": flag
             }
             data['list'].append(order_data)
-
-        return jsonify(data)
+        return jsonify(data), 200
     elif request.args.get('order'):
         order_name=request.args.get('order')
         pagination=ServiceLogModel.query.filter(ServiceLogModel.service_content.like(f"%{order_name}%")).paginate(page=page, per_page=per_page,error_out=False)
@@ -65,7 +64,7 @@ def get_all_order_id():
                 "flag": flag
             }
             data['list'].append(order_data)
-        return jsonify(data)
+        return jsonify(data), 200
     else:
         orders=[]
         pagination = WorkOrderModel.query.paginate(page=page, per_page=per_page,error_out=False)  # 使用 paginate() 方法进行分页查询，不抛出异常
@@ -93,7 +92,7 @@ def get_all_order_id():
 
 
 
-    return jsonify(data)
+    return jsonify(data), 200
 
 
 @bp.route('/infer', methods=['GET'])
@@ -103,33 +102,31 @@ def infering():
     """
     order_ids = request.args.get('order_id')  # '3888,3889'
     orderId = order_ids.split(',')
-    print(orderId)
     #orderId=["540549"]
     correct = len(orderId)
-    orders={
-        "correct":correct,
-        "suspect":len(orderId)-correct,
-        "error":len(orderId)-correct,
-        "suspect_info":[],
-        "error_info":[],
-        "error_url":[]
+    orders = {
+        "correct": correct,
+        "suspect": len(orderId) - correct,
+        "error": len(orderId) - correct,
+        "suspect_info": [],
+        "error_info": [],
+        "error_url": []
     }
     for i in orderId:
-        data=infer(i)
-        error=logic(data)
+        data = infer(i)
+        error = logic(data)
         if error["abnormal_count"]:
-            correct-=1
-            orders["error_info"].append({"id":i,"error":error["abnormal_info"]})
-            orders["error_url"].append({"id":i,"url":error["abnormal_url"]})
-            #orders["error_info"].append({"id":i,"error":error["abnormal_info"],"url":error["abnormal_url"]})
-
-    orders["correct"]=correct
-    orders["suspect"]=0
-    orders["error"]=len(orderId)-correct
-
+            correct -= 1
+            orders["error_info"].append({"id": i, "error": error["abnormal_info"]})
+            orders["error_url"].append({"id": i, "url": error["abnormal_url"]})
+            orders["error_info"].append({"id": i, "error": error["abnormal_info"], "url": error["abnormal_url"]})
+    orders["correct"] = correct
+    orders["suspect"] = 0
+    orders["error"] = len(orderId) - correct
     print(orders)
-
     return jsonify(orders), 200
+
+
 
 
 

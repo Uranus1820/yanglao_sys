@@ -11,7 +11,7 @@ from flask_jwt_extended import JWTManager
 from extensions import *
 from database_models import *
 from blueprints.work_order import bp as work_order
-
+from infer import bp as infer
 app = Flask(__name__)
 app.config.from_object(config)
 # 配置 Redis 作为会话存储
@@ -38,6 +38,7 @@ flask db upgrade
 migrate = Migrate(app, db)
 
 app.register_blueprint(work_order, url_prefix='/work_order')
+app.register_blueprint(infer, url_prefix='/infer')
 CORS(app, supports_credentials=True)
 
 @app.before_request

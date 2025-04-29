@@ -2,7 +2,6 @@ import requests
 import json
 from flask import Blueprint, jsonify,request,abort
 from work_flow.siliconAPI import get_api_inference
-bp = Blueprint(name='image_before', import_name=__name__,url_prefix='/image_before')
 prompt = (
     '# 角色定位\n'
     '作为「居家养老服务质量审核专家」，需基于视觉证据严格验证服务真实性\n\n'

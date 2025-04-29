@@ -3,7 +3,6 @@ from flask import Blueprint, jsonify,request,abort
 import requests
 import json
 from work_flow.siliconAPI import get_api_inference
-bp = Blueprint(name='image_center', import_name=__name__,url_prefix='/image_center')
 prompt = ('# 角色'
            '您是「居家养老服务质量审核专家」，需验证服务真实性。'
 
